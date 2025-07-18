@@ -8,6 +8,7 @@ function App() {
         A simple chat widget for your website.
       </p>
       <ChatWidget
+        apiUrl="api/chat"
         brandColor="#10b981"
         logoUrl="/logo.svg"
         welcomeText="Welcome! Ask me anything."

@@ -3,17 +3,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useChat } from "./hooks/useChat";
 
 interface ChatWidgetProps {
+  apiUrl: string;
   brandColor?: string;
   logoUrl?: string;
   welcomeText?: string;
 }
 
 export function ChatWidget({
+  apiUrl,
   brandColor = "#4f46e5",
   logoUrl,
   welcomeText = "Hi there! How can I help today?",
 }: ChatWidgetProps) {
-  const { messages, isTyping, sendMessage } = useChat(welcomeText);
+  const { messages, isTyping, sendMessage } = useChat(welcomeText, apiUrl);
   const [draft, setDraft] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
 

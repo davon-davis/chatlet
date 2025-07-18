@@ -4,7 +4,7 @@ export type Message = { from: "user" | "bot"; text: string };
 
 const STORAGE_KEY = "chatlet_conversation";
 
-export function useChat(welcome: string) {
+export function useChat(welcome: string, apiUrl: string) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
 
@@ -45,7 +45,7 @@ export function useChat(welcome: string) {
       };
 
       try {
-        const res = await fetch("/api/chat", {
+        const res = await fetch(`${apiUrl}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),

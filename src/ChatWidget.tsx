@@ -17,7 +17,6 @@ export function ChatWidget({
   const [draft, setDraft] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  // auto-scroll on new messages or typing change
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
@@ -31,8 +30,7 @@ export function ChatWidget({
   };
 
   return (
-    <div className="flex flex-col h-[500px] w-[350px] border rounded-xl shadow-lg overflow-hidden">
-      {/* header */}
+    <div className="fixed bottom-4 right-4 z-50 flex flex-col h-[500px] w-[350px] border rounded-xl shadow-lg overflow-hidden">
       <header className="flex items-center px-4 py-2 bg-white border-b">
         {/* {logoUrl && <img src={logoUrl} alt="logo" className="h-6 mr-2" />} */}
         <h1 className="font-semibold" style={{ color: brandColor }}>
@@ -40,8 +38,7 @@ export function ChatWidget({
         </h1>
       </header>
 
-      {/* message list */}
-      <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50">
+      <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50 scrollbar">
         <AnimatePresence initial={false}>
           {messages.map((m, i) => (
             <motion.div
@@ -81,7 +78,6 @@ export function ChatWidget({
         <div ref={bottomRef} />
       </div>
 
-      {/* input */}
       <form
         onSubmit={onSubmit}
         className="flex items-center p-2 border-t bg-white"
